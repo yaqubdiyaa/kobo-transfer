@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Input Bars</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Three Input Bars</h1>
+
+    <label for="input1">Input 1:</label>
+    <input type="text" id="input1" placeholder="Enter Token:">
+
+    <label for="yesNo">Are you transferring data from one kobo project to another?</label>
+    <select id="yesNo" onchange="showAdditionalInput()">
+          <option value="">Select...</option>
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+      </select>
+  
+    <div id="additionalInput" style="display: none;">
+        <label for="input3">Source asset_uid:</label>
+        <input type="text" id="input3" placeholder="Source asset_uid: ">
+      </div>
+
+    <div id="additionalInput2" style="display: none;">
+      <label for="additionalInput2"> Enter name of excel file:</label>
+      <input type="text" id="input2" placeholder="Enter value for Input 2">
+    </div> 
+
+    
+    <button onclick="submitValues()">Submit</button>
+
+    <script>
+
+
+        function showAdditionalInput() {
+            var yesNoSelect = document.getElementById('yesNo');
+            var additionalInputDiv = document.getElementById('additionalInput');
+            var additionalInputDiv2 = document.getElementById('additionalInput2');
+            
+            if (yesNoSelect.value === 'yes') {
+                additionalInputDiv.style.display = 'block';
+            } else if (yesNoSelect.value === 'no') {
+                additionalInputDiv2.style.display = 'block';
+            } else {
+                additionalInputDiv.style.display = 'none';
+                additionalInputDiv2.style.display = 'none';
+            }
+        }
+
+        function submitValues() {
+            var input1Value = document.getElementById('input1').value;
+            var input2Value = document.getElementById('input2').value;
+            var input3Value = document.getElementById('input3').value;
+
+            // You can use the values as needed, for example, log them to the console
+            console.log('Input 1:', input1Value);
+            console.log('Input 2:', input2Value);
+            console.log('Input 3:', input3Value);
+
+            // You can also perform further actions or send these values to the server
+            // For now, let's just alert the values
+            alert('Input 1: ' + input1Value + '\nInput 2: ' + input2Value + '\nInput 3: ' + input3Value);
+        }
+    </script>
+</body>
+</html>

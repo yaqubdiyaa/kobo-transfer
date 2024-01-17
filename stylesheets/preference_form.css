@@ -1,0 +1,100 @@
+.material-symbols-outlined {
+  padding: 0em;
+  padding-inline: 0.3em;
+  vertical-align: text-bottom;
+    float:left;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 30
+}
+
+/*everything below here is just setting up the page, so dont worry about it */
+  
+  
+@media (min-width: 768px) {
+    .navbar{
+    border: transparent !important;
+      text-align: center !important;
+      float: none;
+      display: inline-block;
+    }
+  }
+  
+  body {
+    font-weight:600;
+    text-align:center !important;
+    font-weight: 10;
+  }
+
+  nav,
+header {
+  background: none !important;
+  text-transform: uppercase;
+}
+
+nav li,
+header li {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+nav li a,
+header li a {
+  transition: .5s color ease-in-out;
+}
+
+  
+  .page-title {
+    opacity: .75 !important;
+  }
+
+.jumbotron{
+    background-color: #f4dddd;
+}
+.jumbotron .container {
+    background: #f4dddd;
+}
+
+
+
+.form-group {
+  text-align: center;
+    vertical-align:middle;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-weight: 10;
+}
+
+.submit-button{
+  text-align: center !important;
+  background-color: white; /* Green */
+  border: 2 black;
+  color: black;
+  padding: 15px 32px;
+  padding-top: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  position: center;
+  font-weight: 10;
+}
+
+
+.submit-button:hover {
+  background-color: #7cc; /* Green */
+  color: black;
+  padding: 15px 32px;
+  padding-top: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  position: center;
+  font-weight: 10;
+    
+  }

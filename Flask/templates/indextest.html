@@ -1,0 +1,64 @@
+
+
+<!DOCTYPE html>
+
+<!--
+python file caleld hello.py
+
+open command: and run pyinstaller hello.py
+- creates folder called dist that contains hello.exe
+- double click to run 
+- without 
+
+
+An executable file is a file that can be 
+installed or run on a computer without requiring 
+any additional software or libraries. It has the 
+.exe extension and is commonly used for software
+applications on Windows. By converting your Python
+script into an executable file, you can protect
+your code from being modified or stolen, make it easier
+for others to use your program, and schedule tasks to run 
+automatically.
+
+
+
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executable HTML Input</title>
+</head>
+<body>
+    <h1>Executable HTML Input</h1>
+    <form id="pythonForm">
+        <label for="inputData">Enter input:</label>
+        <input type="text" id="inputData" name="inputData">
+        <button type="button" onclick="runExecutable()">Run Executable</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        function runExecutable() {
+            var inputData = document.getElementById('inputData').value;
+
+            // Run the executable with the input data
+            fetch('/run_executable', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input_data: inputData }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the output
+                document.getElementById('output').innerText = data.output;
+            });
+        }
+    </script>
+</body>
+</html>
