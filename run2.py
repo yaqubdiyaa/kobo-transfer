@@ -20,7 +20,6 @@ def main(
     excel_file,
     limit,
     last_failed=False,
-    keep_media=False,
     regenerate=False,
     quiet=False,
     validate=True,
@@ -29,23 +28,20 @@ def main(
     config = Config(config_file=config_file, validate=validate)
     config_src = config.src
    
-    print('📸 Getting all submission media', end=' ', flush=True)
-    get_media() 
+    #print('📸 Getting all submission media', end=' ', flush=True)
+    #get_media() 
     xml_url_src = config_src['xml_url'] + f'?limit={limit}'
     
-
     if last_failed and config.last_failed_uuids:
         xml_url_src += f'&query={json.dumps(config.data_query)}'
 
     all_results = []
     submission_edit_data = get_submission_edit_data() 
 
-    xml_file_path = './output.xml' #TODO: (for testing purposes)
-
 
     def transfer(all_results, url=None):
         if (xtransfer or gtransfer):
-            parsed_xml = general_xls_to_xml(excel_file, xml_file_path, submission_edit_data, gtransfer)
+            parsed_xml = general_xls_to_xml(excel_file, submission_edit_data, gtransfer)
         else: 
             parsed_xml = get_src_submissions_xml(xml_url=url)
         
@@ -65,8 +61,8 @@ def main(
         
     transfer(all_results, xml_url_src)
 
-    if not keep_media:
-        del_media()
+    #if not keep_media:
+     #   del_media()
 
     print('✨ Done')
     print_stats(all_results)
@@ -92,7 +88,7 @@ if __name__ == '__main__':
     parser.add_argument( 
         '--excel-file',
         '-ef', 
-        help='Google form excel-file path', #TODO
+        help='Excel file path for data to upload', #TODO
     )
     parser.add_argument(
         '--limit',
@@ -153,7 +149,6 @@ if __name__ == '__main__':
             limit=args.limit,
             last_failed=args.last_failed,
             regenerate=args.regenerate_uuids,
-            keep_media=args.keep_media,
             quiet=args.quiet,
             validate=not args.no_validate,
             config_file=args.config_file,
