@@ -142,14 +142,15 @@ def formhub_element(uid, NSMAP, formhubuuid):
         return _uid
 
 def format_xml_from_google(cell_value):
-    #multiple select question responses from google forms (seperated by comas) must be seperated by a space, and all lower case to show up in kobo 
-    if ',' in str(cell_value):
+    #multiple select question responses from google forms are sepearated by ',' 
+    #to show up in kobo, responses must be lowercase, spaces must be replaced with '_' and seperated by ' '
+    if ',' in cell_value:
         options_selected = cell_value.split(',')
         for i in range(len(options_selected)):
-            options_selected[i] = options_selected[i].lower().strip()
+            options_selected[i] = options_selected[i].strip().lower()
             options_selected[i] = options_selected[i].replace(' ', '_')
         cell_value = ' '.join(options_selected)
-    
+        
     #formatting date and time to be compatible with kobo are specific to how google forms saves data
     cell_value = format_time(str(cell_value))
     cell_value = format_date(cell_value)
@@ -176,7 +177,7 @@ def meta_element(_uid, formatted_uuid):
 
 def single_submission_xml( gtransfer, _uid, col_name, cell_value, all_empty, formatted_uuid):
     if (gtransfer):
-        cell_value = format_xml_from_google(cell_value)
+        cell_value = format_xml_from_google(str(cell_value))
      
     if cell_value is None or cell_value == "none" or cell_value == "None":  
         cell_value = ""
@@ -214,7 +215,7 @@ def single_submission_xml( gtransfer, _uid, col_name, cell_value, all_empty, for
             
     return all_empty, formatted_uuid
 
-def general_xls_to_xml(excel_file_path, submission_data, gtransfer):
+def general_xls_to_xml(excel_file_path, submission_data, gtransfer = False):
     workbook = open_xlsx(excel_file_path)
     #first sheet should have all data, if xlsx contains other sheets, they must be for repeat groups
     sheet = workbook.worksheets[0]
